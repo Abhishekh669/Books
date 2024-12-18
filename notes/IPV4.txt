@@ -1,0 +1,155 @@
+1. Reserved Addresses
+    Reserved IP addresses are blocks set aside for future use or special purposes. They are not allocated for regular addressing and might be used for experimentation or future extensions of the Internet.
+
+Reserved Blocks:
+    Class A:
+        0.0.0.0/8: Reserved for special use.
+        127.0.0.0/8: Reserved for loopback addresses.
+    Class B:
+        128.0.0.0/16 and 191.255.0.0/16: Various    reserved uses, including experimentation.
+    Class C:
+        192.0.0.0/24: Reserved for various uses.
+        223.255.255.0/24: Reserved for future use.
+
+2. Private, Unregistered, Nonroutable Addresses
+    Private IP addresses are designated for use within private networks and are not routable on the public Internet. They were defined to conserve public IP address space and avoid conflicts. 
+
+    Private Address Blocks (RFC 1918):
+        Class A:
+            10.0.0.0/8 (addresses from 10.0.0.0 to 10.255.255.255)
+        Class B:
+            172.16.0.0/12 (addresses from 172.16.0.0 to 172.31.255.255)
+        Class C:
+            192.168.0.0/16 (addresses from 192.168.0.0 to 192.168.255.255)
+
+3. IP mulitcast addressing : 
+    IP multicast addressing is a method used for efficient data distribution from a single source to multiple destinations on a network.
+
+    What is IP Multicast?
+        Purpose: IP multicast is used to send data from one source to multiple receivers at once. It’s more efficient than sending multiple copies of the same data to each receiver individually.
+
+        Example: Think of a live TV broadcast. The TV station sends one signal (source) that is received by many TVs (receivers) at the same time. This is similar to how IP multicast works.
+
+        Ip Address from "224.0.0.0" to "239.255.255.255" class D is used for multicasting.
+
+
+Broadcast vs. Multicast:
+
+Broadcast:
+
+    Definition: 
+        Broadcast sends data to all     devices on a network segment or subnet. It’s a one-to-all communication method.
+
+    Usage: 
+        Typically used in local networks to communicate with every device without knowing their specific addresses.
+
+    Limitations:
+        Network Traffic: It can generate a lot of unnecessary traffic because every device on the network has to process the broadcasted data, even if they don’t need it.
+
+    Scalability: 
+        Broadcast is limited to a single network segment and does not scale well to larger networks or across multiple network segments.
+
+Multicast:
+
+    Definition: 
+        Multicast sends data to a specific group of devices that have expressed interest in receiving that data. It’s a one-to-many communication method.
+
+    Usage: 
+        Used to efficiently distribute data to multiple, but not all, devices across a network. It is useful for applications like streaming media, video conferencing, and online gaming.
+
+Advantages:
+    Efficiency: 
+        Multicast only sends the data to devices that need it, reducing unnecessary network traffic. This is more efficient than broadcast, especially in larger or segmented networks.
+
+    Scalability: 
+        Multicast can work across multiple network segments and even the internet, making it suitable for global applications.
+
+
+4.IP Subneting : 
+    Steps for the IP Subnetting are as follows : 
+        1.Requirement analysis : 
+
+            i.What class is the IP address block?
+
+            ii.How many physical subnets currently exist on the network?
+
+            iii.Are there plans to add more physical networks soon, and if so, how many?
+
+            iv.What is the maximum number of hosts in the largest subnet today?
+
+            v.What is the anticipated maximum number of hosts in the largest subnet in the near future?
+
+
+
+
+IPv4 Datagram
+    Encapulation : 
+        In networking, encapsulation involves wrapping data from higher layers with additional headers and footers as it moves down the OSI model. Data from the transport layer (TCP or UDP) is encapsulated into an IP datagram at the network layer. The IP datagram is then further encapsulated into a data link layer frame (e.g., Ethernet) for transmission. If the data is too large, it is fragmented into smaller IP datagrams that are reassembled at the destination. Each layer's encapsulation adds necessary control information for successful data delivery across the network.
+
+IP Datagram General Format : 
+    Version:
+        Specifies the IP protocol version (IPv4 in this case). It is 4 bits long.
+
+    IHL (Internet Header Length):
+        Indicates the length of the IPv4 header in 32-bit words. It is 4 bits long and helps determine where the header ends and the data begins.
+
+    Type of Service (ToS):
+        Provides information on the desired quality of service (QoS) for the packet, including precedence, delay, throughput, and reliability. It is 8 bits long.
+
+    Total Length:
+        Specifies the total length of the IPv4 packet, including both header and data, in bytes. It is 16 bits long.
+
+    Identification:
+        A unique value assigned to each packet for identification and reassembly of fragmented packets. It is 16 bits long.
+
+    Flags: Contains control flags related to fragmentation. It is 3 bits long and includes:
+
+    Reserved:
+        Must be set to 0.
+    Don't Fragment (DF):
+        Indicates that the packet should not be fragmented.
+    More Fragments (MF):
+        Indicates that more fragments of this packet follow.
+    Fragment Offset:
+        Indicates the position of the fragment in the original packet, used for reassembly. It is 13 bits long.
+
+    Time to Live (TTL):
+        Limits the packet’s lifetime to prevent it from circulating indefinitely. Each router decrements this value by one before forwarding. It is 8 bits long.
+
+    Protocol:
+        Specifies the upper-layer protocol used in the data portion (e.g., TCP, UDP). It is 8 bits long.
+
+    Header Checksum: 
+        Provides error-checking for the IPv4 header to ensure data integrity. It is 16 bits long.
+
+    Source IP Address:
+        The IP address of the sender. It is 32 bits long.
+
+    Destination IP Address:
+        The IP address of the intended recipient. It is 32 bits long.
+
+    Options: 
+        Allows additional features and options for the IP header. This field is optional and can vary in length.
+
+    Padding:
+        Ensures the header length is a multiple of 32 bits. Padding is added if the Options field is present and doesn’t align with a 32-bit boundary.
+
+    Data:
+        The payload of the packet, which follows the IPv4 header.
+
+
+
+
+
+1.Time To Live: 
+    The Time to Live (TTL) field in IP datagrams is used to prevent datagrams from circulating endlessly due to router loops. Originally designed to be a time value measured in seconds, TTL is now used as a maximum hop count. Each router that processes a datagram decrements the TTL value by one. If the TTL reaches zero, the datagram is discarded, and an Internet Control Message Protocol (ICMP) Time Exceeded message is sent to the sender. This mechanism helps prevent router loops and ensures datagrams don’t become stale.
+
+2.Type Of Service:
+    The Type of Service (TOS) field in IP datagrams, which is a one-byte field, was originally designed to offer quality-of-service (QoS) features by indicating how datagrams should be handled based on their precedence and delivery preferences.
+    e: TOS was designed to tag packets with information about their priority and how they should be delivered. For example, important packets might get higher priority than less urgent ones. However, for many years, this field was rarely used and mostly ignored, as it was often set to zero. In 1998, the Internet Engineering Task Force (IETF) updated the TOS field through RFC 2474 to introduce Differentiated Services (DS). This approach repurposed the TOS field's values, now called codepoints, to specify different service levels for network traffic.
+
+3.Options 
+    All IP datagrams include a standard 20-byte header with essential information like source and destination addresses, fragmentation details, and length. IPv4 also allows for optional fields that offer additional flexibility in handling datagrams. While these options are not mandatory, all devices must be able to read and process them.
+
+
+  

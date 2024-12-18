@@ -1,0 +1,83 @@
+Nmap’s Scripting Engine (NSE) includes a vast number of scripts, organized into various categories. Here’s a comprehensive list of categories and some notable scripts within each:
+1. Authentication
+
+    http-auth - Checks for HTTP authentication
+    http-auth-finder - Finds HTTP authentication methods
+    ftp-brute - Brute-forces FTP credentials
+    ssh-brute - Brute-forces SSH credentials
+    smb-brute - Brute-forces SMB credentials
+    snmp-brute - Brute-forces SNMP community strings
+    mysql-brute - Brute-forces MySQL credentials
+
+2. Brute Force
+
+    http-brute - Brute-forces HTTP authentication
+    imap-brute - Brute-forces IMAP credentials
+    ms-sql-brute - Brute-forces MS SQL credentials
+    redis-brute - Brute-forces Redis passwords
+    sip-brute - Brute-forces SIP credentials
+    vnc-brute - Brute-forces VNC passwords
+
+3. Discovery
+
+    http-enum - Enumerates directories and files on an HTTP server
+    dns-brute - Performs DNS brute-forcing
+    smb-enum-shares - Enumerates SMB shares
+    snmp-sysdescr - Retrieves system description via SNMP
+    ssh-publickey-acceptance - Checks if SSH public keys are accepted
+    telnet-enum - Enumerates services via Telnet
+    whois - Retrieves WHOIS information
+
+4. Vulnerability Scanning
+
+    http-vuln-cve2014-3704 - Tests for a specific Drupal vulnerability
+    smb-vuln-ms17-010 - Tests for the SMB vulnerability exploited by WannaCry
+    ssl-heartbleed - Checks for the Heartbleed vulnerability
+    ssh-vuln-cve2014-2653 - Tests for an SSH vulnerability
+    http-shellshock - Exploits the Shellshock vulnerability
+
+5. Information Gathering
+
+    http-headers - Retrieves HTTP headers
+    dns-info - Gathers DNS-related information
+    smtp-commands - Retrieves SMTP server commands
+    snmp-info - Retrieves SNMP information
+    http-title - Retrieves the title of a web page
+    http-methods - Lists HTTP methods supported by a server
+    ftp-syst - Retrieves system information from FTP servers
+
+6. Exploitation
+
+    http-shellshock - Exploits Shellshock vulnerability
+    ms17-010 - Exploits the SMB vulnerability
+    http-csrf - Tests for Cross-Site Request Forgery vulnerabilities
+    http-sql-injection - Tests for SQL injection vulnerabilities
+
+7. Services Enumeration
+
+    http-service - Identifies HTTP service and version
+    smtp-enum-users - Enumerates users on SMTP servers
+    pop3-capabilities - Retrieves capabilities of a POP3 server
+    ftp-anon - Checks for anonymous FTP access
+    smb-os-discovery - Discovers operating system and domain information via SMB
+
+8. Network Scanning
+
+    traceroute - Performs network path tracing
+    ping - Checks if a host is reachable
+    ip-geolocation - Attempts to determine the geographical location of an IP address
+    network-mapping - Maps network structure
+
+9. Miscellaneous
+
+    ssl-enum-ciphers - Enumerates SSL/TLS ciphers supported by a server
+    ssl-dh-params - Checks the Diffie-Hellman parameters in SSL/TLS
+    http-robots.txt - Retrieves and parses robots.txt file for interesting URLs
+    http-php-version - Detects the PHP version from HTTP responses
+
+
+2.To find the detail about the scripts we have two options :
+
+	1.First is to look at the website https://nmap.org/nsedoc/categories/ 
+	2.head /usr/share/nmap/scripts/script.db or grep "ftp" /usr/share/nmap/scripts/script.db
+
